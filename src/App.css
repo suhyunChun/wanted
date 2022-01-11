@@ -34,6 +34,7 @@
   width:100%;
   border-bottom: 1px solid #e1e1e1;
 }
+
 .nav-side{
   display:flex;
   flex-direction: row;
@@ -58,13 +59,12 @@
   flex-direction: row;
   align-items: center;
 }
-.profile>*{
-  width:18px;
-  height:18px;
-  padding: 0 10px;
-}
-.Banner{
+.Banner-wrapper{
   padding-top:25px;
+  display:flex;
+}
+.inner{
+  align-content: center;
 }
 #profile-btn{
   font-size:13px;
@@ -79,6 +79,9 @@
 
 }
 
+#side>div{
+  margin:0 30px;
+}
 @media screen and (max-width:1085px){
   .topNav{
     height:100px;
@@ -87,13 +90,30 @@
     align-items: flex-start;
     padding:10px;
   }
-  .dp{
+  #side>div{
+    margin:0;
+  }
+  .ap-f{
+    display:flex;
+  }
+  #side{
+    width:100%;
+    justify-content: space-between;
+  }
+  .dp-f{
     display: none;
   }
-  .ap{
-    display: flex;
+
+}
+
+@media screen and (max-width:758px) {
+  .dp {
+    display: none;
   }
 
+  .ap {
+    display: flex;
+  }
 }
 @keyframes App-logo-spin {
   from {

@@ -1,16 +1,9 @@
 import React from 'react';
 import {FaSearch} from 'react-icons/fa'
 import {FaRegBell} from 'react-icons/fa'
-const {Badge} = require("@material-ui/core")
-const styles = theme => ({
-    notification: {
-        backgroundColor:"#00AFD7",
-        color:"white"
-    },
-    btnBadge: {
-        color: "#00AFD7"
-    }
-});
+import { BsThreeDots } from "react-icons/bs";
+
+
 function MainBar(props){
     const {classes} = props;
     return(
@@ -24,34 +17,34 @@ function MainBar(props){
                      style={{width:"80px", height:"17px"}}
                     />
             </div>
-
-            <ul className = 'nav-btn'>
-                    <li className="ap" style={{display:"none"}}>홈</li>
-                    <li className="ap">채용</li>
-                    <li className= "ap">이벤트</li>
-                    <li className="dp">직군별 연봉</li>
-                    <li className="dp">이력서</li>
-                    <li className="dp">
-                        <Badge variant='dot' badgeContent={'New'} color = 'primary'>커뮤니티</Badge></li>
-                    <li className="dp">프리랜서</li>
-                    <li className="dp">
-                        <Badge variant='dot' badgeContent={'Beta'} color = 'primary'>AI합격예측</Badge></li>
-            </ul>
-            <div className = 'profile'>
-                    <FaSearch/>
-                    <Badge badgeContent={'N'} color = 'primary'>
-                        <FaRegBell/>
-                    </Badge>
-                    <Badge badgeContent={'N'} color = 'primary'>
-                        <img className="dp" src="https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png"
-                             style={{width:"28px", height:"28px",borderRadius:"100%"}}/>
-                    </Badge>
-                <div className="dp" style={{color:"#d5d5d5"}}>|</div>
-                <div  className="dp" id = 'profile-btn' style={{width:"70px"}}>
-                    기업 서비스
+            <div id = 'side' style={{display:'flex', flexDirection:"row"}}>
+                <div className = 'nav-btn'>
+                        <li className="ap" style={{display:"none"}}>홈</li>
+                        <li className="ap">채용</li>
+                        <li className= "ap">이벤트</li>
+                        <li className="dp">직군별 연봉</li>
+                        <li className="dp">이력서</li>
+                        <li className="dp">커뮤니티
+                            <span style={{position:'absolute',fontWeight:"500", fontSize:'3px', fontFamily:"Apple SD Gothic Neo",color:"blue"}}>New</span>
+                        </li>
+                        <li className="dp">프리랜서</li>
+                        <li className="dp">AI합격예측
+                            <span style={{position:'absolute',fontWeight:"500", fontSize:'3px', fontFamily:"Apple SD Gothic Neo",color:"blue"}}>Beta</span></li>
+                </div>
+                <div className = 'profile'>
+                    <FaSearch style={{width:"18px",height:"18px",marginRight:"15px"}}/>
+                    <FaRegBell style={{width:"18px",height:"18px"}}/>
+                    <sup><span className="badge badge-primary" style={{marginRight:"15px"}} >N</span></sup>
+                    <img className="dp-f" src="https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png"
+                                 style={{width:"28px", height:"28px",borderRadius:"100%"}}/>
+                    <sup className ='dp-f'><span className="badge badge-primary" style={{marginRight:"15px"}}>N</span></sup>
+                    <div className="dp-f" style={{color:"#d5d5d5"}}>|</div>
+                    <div  className="dp-f" id = 'profile-btn' >
+                        기업 서비스
+                    </div>
+                    <BsThreeDots className="ap-f" style={{display:'none'}}/>
                 </div>
             </div>
-
         </div>
     )
 
