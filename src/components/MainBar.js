@@ -19,7 +19,7 @@ function MainBar(props){
             </div>
             <div id = 'side' style={{display:'flex', flexDirection:"row"}}>
                 <div className = 'nav-btn'>
-                        <li className="ap" style={{display:"none"}}>홈</li>
+                        <li className="ap-home">홈</li>
                         <li className="ap">채용</li>
                         <li className= "ap">이벤트</li>
                         <li className="dp">직군별 연봉</li>
@@ -32,17 +32,23 @@ function MainBar(props){
                             <span style={{position:'absolute',fontWeight:"500", fontSize:'3px', fontFamily:"Apple SD Gothic Neo",color:"blue"}}>Beta</span></li>
                 </div>
                 <div className = 'profile'>
-                    <FaSearch style={{width:"18px",height:"18px",marginRight:"15px"}}/>
-                    <FaRegBell style={{width:"18px",height:"18px"}}/>
-                    <sup><span className="badge badge-primary" style={{marginRight:"15px"}} >N</span></sup>
-                    <img className="dp-f" src="https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png"
-                                 style={{width:"28px", height:"28px",borderRadius:"100%"}}/>
-                    <sup className ='dp-f'><span className="badge badge-primary" style={{marginRight:"15px"}}>N</span></sup>
+                    <div>
+                        <FaSearch style={{width:"18px",height:"18px"}}/>
+                    </div>
+                    <div style={{position:'relative'}}>
+                        <FaRegBell style={{width:"18px",height:"18px"}}/>
+                        <sup><span className="badge badge-primary" style={{position:'absolute',top:'-9px',right:'-8px',zIndex:1}} >N</span></sup>
+                    </div>
+                    <div style={{position:'relative'}}>
+                        <img className="dp-f" src="https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png"
+                                     style={{width:"28px", height:"28px",borderRadius:"100%"}}/>
+                        <sup className ='dp-f'><span className="badge badge-primary" style={{position:'absolute',top:'-7px',right:'-8px',zIndex:1}}>N</span></sup>
+                    </div>
                     <div className="dp-f" style={{color:"#d5d5d5"}}>|</div>
                     <div  className="dp-f" id = 'profile-btn' >
                         기업 서비스
                     </div>
-                    <BsThreeDots className="ap-f" style={{display:'none'}}/>
+                    <BsThreeDots className="ap-f"/>
                 </div>
             </div>
         </div>
