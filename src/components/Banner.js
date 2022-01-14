@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 function Banner(){
-    let [currIdx, setCurrIdx] = useState(0)
+    let [currIdx, setCurrIdx] = useState(1)
     let [img ,setImg]= useState([ "https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg",
                 "https://static.wanted.co.kr/images/banners/1452/be4ec643.jpg",
                 "https://static.wanted.co.kr/images/banners/1453/7a978579.jpg",
@@ -42,7 +42,6 @@ function Banner(){
             setImg(img)
             setCurrIdx(0)
         }
-
     }
 
     console.log(currIdx)
@@ -50,13 +49,12 @@ function Banner(){
         <React.Fragment>
             <div className = 'Banner'>
                 <div className = "Banner-wrapper">
-                    <div className = 'inner'>
                         {img.map((item)=>(
                             <div className ='content' key = {item}>
                                 <img src={item} style={{filter: (currSlide=== item)? "brightness(100%)":"brightness(50%)"}}/>
                             </div>
                         ))}
-                    </div>
+
                 </div>
                 <div className ='banner-btn'>
                     <button className="dp-f" id = 'prev' onClick={prev}>
