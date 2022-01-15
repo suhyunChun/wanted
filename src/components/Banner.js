@@ -11,20 +11,29 @@ function Banner(){
                 ["https://static.wanted.co.kr/images/banners/1488/baa54448.jpg","UX 디자이너의 커리어 설계","브랜드 가치를 더하는 디자인"]])
     let [currSlide, setCurrSlide] = useState("https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg")
     let [initialLoc, setInitialLoc] = useState(0)
+    let t = null;
 
     useEffect(()=>{
         makeClone()
-        console.log(initialLoc)
+        console.log(initialLoc,document.getElementsByClassName('banner-image')[0].width)
         document.querySelector('.Banner-wrapper').style.width = (document.getElementsByClassName('banner-image')[0].width+20)*3*6+"px"
-        document.querySelector('.Banner-wrapper').style.transform="translateX(-" + (1080*img.length-300) + "px)";
+        document.querySelector('.Banner-wrapper').style.transform="translateX(-" + ((document.getElementsByClassName('banner-image')[0].width+20)*6-310) + "px)";
         },[])
+    const timer=()=>{
+        if(t === null) {
+            t = setInterval(() => {
+                next()
+            }, 4000)
+        }
+    }
+
     const makeClone=()=>{
         let tmpImg = [...img]
         tmpImg = tmpImg.concat(img)
         tmpImg = (img).concat(tmpImg)
         setImg(tmpImg)
         document.querySelector('.Banner-wrapper').style.width = 1080*tmpImg.length+"px"
-        setInitialLoc((document.getElementsByClassName('banner-image')[0].width+20)*6-300)
+        setInitialLoc((document.getElementsByClassName('banner-image')[0].width+20)*6-310)
     }
     const prev=()=>{
         let imgWidth = document.getElementsByClassName('banner-image')[0].width
@@ -62,6 +71,8 @@ function Banner(){
         }
 
     }
+
+   // timer()
     return(
         <React.Fragment>
             <div className = 'Banner'>
