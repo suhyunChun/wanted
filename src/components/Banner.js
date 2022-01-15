@@ -11,6 +11,7 @@ function Banner(){
                 ["https://static.wanted.co.kr/images/banners/1488/baa54448.jpg","UX 디자이너의 커리어 설계","브랜드 가치를 더하는 디자인"]])
     let [currSlide, setCurrSlide] = useState(img[currIdx][0])
     let [count,setCount] = useState(0)
+
     const prev=()=>{
         if(currIdx >0){
             setCurrSlide(img[currIdx-1][0])
@@ -56,7 +57,7 @@ function Banner(){
                                     <h2>{item[1]}</h2>
                                     <h3>{item[2]}</h3>
                                     <hr className = 'dp-f' style={{marginTop:"1.3rem"}}/>
-                                    <span style={{color:"#36f",fontWeight:"700",fontSize:"14px",lineWeight:"1" }}>바로가기 > </span>
+                                    <span  style={{color:"#36f",fontWeight:"700",fontSize:"14px",lineWeight:"1" }}>바로가기 > </span>
                                 </div>):''}
                                 </div>
 

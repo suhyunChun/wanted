@@ -73,11 +73,11 @@ body{
   position: relative;
   width:auto;
   margin:auto;
-  /*overflow:hidden*/
+  overflow:hidden
 }
 .Banner-wrapper{
   display:flex;
-  width:400vw;
+  width:385%;
   height:300px;
 }
 .inner{
@@ -98,7 +98,7 @@ body{
   left:34px;
 
 }
-.info>h2,h3,span{
+.info>span,h2,h3{
   margin-left:20px;
   margin-right:20px;
   font-size:20px;
@@ -116,11 +116,13 @@ body{
 }
 .content{
   position: relative;
-  /*right:11.3%;*/
-  display:flex;
+  display:inline-block;
+  left:-11.75%;
   margin: 0 10px 0 10px;
 }
 .content>img{
+
+  display:flex;
   border-radius:4px;
   filter: brightness(50%);
   width:100%;
@@ -129,7 +131,8 @@ body{
 }
 .banner-btn{
   position: relative;
-  width:auto;
+  width:100%;
+  height:100%;
 
 }
 .banner-btn>button{
@@ -174,7 +177,8 @@ body{
 }
 @media screen and (max-width:1120px){
   .content>img{
-    height: 220px;
+    height: 170px;
+    width:100%;
   }
 }
 @media screen and (max-width:1085px){
@@ -209,8 +213,9 @@ body{
 
   .info{
     left:0px;
-    bottom:1px;
+    bottom:-18px;
     width:100%;
+
     text-align:center;
     border-radius: 0px;
   }
