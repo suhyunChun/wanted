@@ -77,7 +77,6 @@ body{
 }
 .Banner-wrapper{
   display:flex;
-  width:385%;
   height:300px;
 }
 .inner{
@@ -116,13 +115,13 @@ body{
 }
 .content{
   position: relative;
-  display:inline-block;
-  left:-11.75%;
+  display:block;
+
   margin: 0 10px 0 10px;
+  overflow:hidden;
 }
 .content>img{
-
-  display:flex;
+  display:inline-block;
   border-radius:4px;
   filter: brightness(50%);
   width:100%;

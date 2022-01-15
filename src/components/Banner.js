@@ -1,58 +1,77 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 function Banner(){
-    let [currIdx, setCurrIdx] = useState(1)
+    let [currIdx, setCurrIdx] = useState(0)
     let [img ,setImg]= useState([ ["https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg","해, 커리어 EP 02 공개","마지막 관문 2라운드의 승자는?"],
                 ["https://static.wanted.co.kr/images/banners/1487/0d36f0b5.jpg","포토폴리오를 부탁해!","디자이너의 포폴 살펴보기"],
                 ["https://static.wanted.co.kr/images/banners/1486/fba2df30.jpg","성과를 내는 마켓팅","실제 사례를 공개합니다!"],
                 ["https://static.wanted.co.kr/images/banners/1484/b2853456.jpg","성장하는 개발자가 되려면?","OOO 검색하지 말 것!"],
                 ["https://static.wanted.co.kr/images/banners/1473/41f7b36e.jpg","개발자 되고싶은 분들!?","프론트엔드 무료 교육과정 참여하기"],
                 ["https://static.wanted.co.kr/images/banners/1488/baa54448.jpg","UX 디자이너의 커리어 설계","브랜드 가치를 더하는 디자인"]])
-    let [currSlide, setCurrSlide] = useState(img[currIdx][0])
-    let [count,setCount] = useState(0)
+    let [currSlide, setCurrSlide] = useState("https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg")
+    let [initialLoc, setInitialLoc] = useState(0)
 
-    const prev=()=>{
-        if(currIdx >0){
-            setCurrSlide(img[currIdx-1][0])
-            setCurrIdx(currIdx-1)
-        }else if (currIdx ===0){
-            setImg([img[img.length-1]].concat(img))
-            setCurrSlide(img[img.length-1][0])
-            img.pop()
-            setImg(img)
-            setCurrIdx(img.length-1)
-        }
-        setCount(count-1)
-        document.querySelector('.inner').style.transitionDuration = "500ms"
-        document.querySelector('.inner').style.transform ="translateX(+"+window.innerWidth*0.4*(count+1)+"px)"
+    useEffect(()=>{
+        makeClone()
+        console.log(initialLoc)
+        document.querySelector('.Banner-wrapper').style.width = (document.getElementsByClassName('banner-image')[0].width+20)*3*6+"px"
+        document.querySelector('.Banner-wrapper').style.transform="translateX(-" + (1080*img.length-300) + "px)";
+        },[])
+    const makeClone=()=>{
+        let tmpImg = [...img]
+        tmpImg = tmpImg.concat(img)
+        tmpImg = (img).concat(tmpImg)
+        setImg(tmpImg)
+        document.querySelector('.Banner-wrapper').style.width = 1080*tmpImg.length+"px"
+        setInitialLoc((document.getElementsByClassName('banner-image')[0].width+20)*6-300)
     }
-    const next =()=>{
-        setCount(count+1)
-        if (currIdx <= img.length-1){
-            setCurrSlide(img[currIdx+1][0])
-            setCurrIdx(currIdx+1)
-            document.querySelector('.inner').style.transitionDuration = "500ms"
-            document.querySelector('.inner').style.transform ="translate3d(-"+window.innerWidth*0.6*(currIdx+2)+"px, 0px, 0px)"
-        }
-        if (currIdx === img.length-1){
-            setImg(img.push(img[0]))
-            setCurrSlide(img[0][0])
-            document.querySelector('.inner').style.transitionDuration = "500ms"
-            document.querySelector('.inner').style.transform ="translate3d(-"+window.innerWidth*0.6*(count+1)+"px, 0px, 0px)"
-            setImg(img)
+    const prev=()=>{
+        let imgWidth = document.getElementsByClassName('banner-image')[0].width
+        document.querySelector('.Banner-wrapper').style.transitionDuration = "500ms"
+        document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+20)* (currIdx-1)) + "px)";
+        setCurrIdx(currIdx-1)
+        if(currIdx === -5){
+            setTimeout(()=>{
+                document.querySelector('.Banner-wrapper').style.transition="0ms";
+                document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc) + "px)";
+                },100);
             setCurrIdx(0)
         }
+        if (currIdx-1 < 0){
+            setCurrSlide(img[currIdx+5][0])
+        }else{
+          setCurrSlide(img[currIdx-1][0])
+        }
     }
+    const next =()=>{
+        let imgWidth = document.getElementsByClassName('banner-image')[0].width
+        document.querySelector('.Banner-wrapper').style.transition = 500 + "ms";
+        document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+20)*(currIdx+1)) + "px)";
+        setCurrIdx(currIdx+1)
+        if(currIdx===5){
+            setTimeout(()=>{
+                document.querySelector('.Banner-wrapper').style.transition="0ms";
+                document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc) + "px)";},500);
+            setCurrIdx(0)
+        }
+        if (currIdx+1 < 0){
+            setCurrSlide(img[currIdx+7][0])
+        }else{
+            setCurrSlide(img[currIdx+1][0])
+        }
 
-    console.log(currIdx)
+    }
     return(
         <React.Fragment>
             <div className = 'Banner'>
                 <div className = "Banner-wrapper">
                         {img.map((item)=>(
-                                <div className ='content' key = {item[0]}>
-                                    <img src={item[0]} style={{filter: (currSlide=== item[0])? "brightness(100%)":"brightness(50%)"}}/>
+                                <div className ='content'>
+                                    <img
+                                        className = 'banner-image'
+                                        src={item[0]}
+                                        style={{filter: (currSlide=== item[0])? "brightness(100%)":"brightness(50%)"}}/>
                                     {(currSlide===item[0])?(<div className ='info'>
                                     <h2>{item[1]}</h2>
                                     <h3>{item[2]}</h3>
