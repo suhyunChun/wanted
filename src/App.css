@@ -73,7 +73,7 @@ body{
   position: relative;
   width:auto;
   margin:auto;
-  overflow:hidden
+  /*overflow:hidden*/
 }
 .Banner-wrapper{
   display:flex;
@@ -86,9 +86,37 @@ body{
   height:auto;
   align-items: center;
 }
+.info{
+  position:absolute;
+  bottom:28px;
+  width:330px;
+  height:146px;
+  border-radius:4px;
+  background-color:#fff;
+  opacity:9;
+  text-align:left;
+  left:34px;
+
+}
+.info>h2,h3,span{
+  margin-left:20px;
+  margin-right:20px;
+  font-size:20px;
+
+}
+.info>h2{
+  margin-top:20px;
+  font-weight:700;
+  color:#333;
+}
+.info>h3{
+  font-weight:500;
+  font-size:14px;
+
+}
 .content{
   position: relative;
-  right:11.3%;
+  /*right:11.3%;*/
   display:flex;
   margin: 0 10px 0 10px;
 }
@@ -179,6 +207,31 @@ body{
     display: none;
   }
 
+  .info{
+    left:0px;
+    bottom:1px;
+    width:100%;
+    text-align:center;
+    border-radius: 0px;
+  }
+  .info>h2{
+    margin-top:20px;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+    color:#333;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+  }
+  .info>h3{
+    margin-top:6px;
+    font-size:13px;
+    font-weight:500;
+    line-height:1.15;
+    color : #666;
+
+  }
 }
 
 @media screen and (max-width:758px) {
