@@ -7,6 +7,7 @@ import { BsThreeDots } from "react-icons/bs";
 function MainBar(props){
     const {classes} = props;
     return(
+        <div style={{width:"100%",  borderBottom: "1px solid #e1e1e1"}}>
         <div className = 'topNav'>
             <div className = 'logo'>
                 <img
@@ -51,6 +52,7 @@ function MainBar(props){
                     <BsThreeDots className="ap-f"/>
                 </div>
             </div>
+        </div>
         </div>
     )
 

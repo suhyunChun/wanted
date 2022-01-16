@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
+
 function Banner(){
     let [currIdx, setCurrIdx] = useState(0)
     let [img ,setImg]= useState([ ["https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg","해, 커리어 EP 02 공개","마지막 관문 2라운드의 승자는?"],
@@ -15,10 +16,20 @@ function Banner(){
 
     useEffect(()=>{
         makeClone()
-        console.log(initialLoc,document.getElementsByClassName('banner-image')[0].width)
-        document.querySelector('.Banner-wrapper').style.width = (document.getElementsByClassName('banner-image')[0].width+20)*3*6+"px"
-        document.querySelector('.Banner-wrapper').style.transform="translateX(-" + ((document.getElementsByClassName('banner-image')[0].width+20)*6-310) + "px)";
+        //resize width, initial loc
+        let w = document.getElementsByClassName('banner-image')[0].width;
+        if(w!==0) {
+            document.querySelector('.Banner-wrapper').style.width = (w + 20) * 3 * 6 + "px"
+            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((w + 20) * 6 - 310) + "px)";
+            setInitialLoc((document.getElementsByClassName('banner-image')[0].width + 20) * 6 - 310)
+        }else{
+            console.log("w == 0")
+            document.querySelector('.Banner-wrapper').style.width = (1080) * 3 * 6 + "px"
+            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((1080) * 6 - 310) + "px)";
+            setInitialLoc(((1080) * 6 - 310))
+        }
         },[])
+
     const timer=()=>{
         if(t === null) {
             t = setInterval(() => {
@@ -26,7 +37,6 @@ function Banner(){
             }, 4000)
         }
     }
-
     const makeClone=()=>{
         let tmpImg = [...img]
         tmpImg = tmpImg.concat(img)
@@ -37,6 +47,7 @@ function Banner(){
     }
     const prev=()=>{
         let imgWidth = document.getElementsByClassName('banner-image')[0].width
+        console.log(imgWidth,(initialLoc+(imgWidth+20)* (currIdx-1)))
         document.querySelector('.Banner-wrapper').style.transitionDuration = "500ms"
         document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+20)* (currIdx-1)) + "px)";
         setCurrIdx(currIdx-1)
@@ -44,7 +55,7 @@ function Banner(){
             setTimeout(()=>{
                 document.querySelector('.Banner-wrapper').style.transition="0ms";
                 document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc) + "px)";
-                },100);
+                },500);
             setCurrIdx(0)
         }
         if (currIdx-1 < 0){
@@ -71,8 +82,7 @@ function Banner(){
         }
 
     }
-
-   // timer()
+    //timer();
     return(
         <React.Fragment>
             <div className = 'Banner'>
@@ -109,11 +119,3 @@ function Banner(){
 }
 
 export default Banner
-
-
-/*
-                                    {(currSlide===item[0])?(<div className ='info'>
-                                        <h2>{item[1]}</h2>
-                                        <h3>{item[2]}</h3>
-                                        <span>바로가기 > </span> </div>):''}
- */
