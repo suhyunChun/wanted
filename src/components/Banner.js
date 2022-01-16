@@ -13,11 +13,25 @@ function Banner(){
     let [currSlide, setCurrSlide] = useState("https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg")
     let [initialLoc, setInitialLoc] = useState(0)
     let t = null;
-
+    /*window.onresize=()=>{
+        console.log("__")
+        let w = document.getElementsByClassName('banner-image')[0].width;
+        if(w!==0) {
+            console.log(w,((w + 20) * 6 - 310))
+            document.querySelector('.Banner-wrapper').style.width = (w + 20) * 3 * 6 + "px"
+            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((w + 20) * 6 - 310) + "px)";
+            setInitialLoc((document.getElementsByClassName('banner-image')[0].width + 20) * 6 - 310)
+        }else{
+            console.log("w=0")
+            document.querySelector('.Banner-wrapper').style.width = (1080) * 3 * 6 + "px"
+            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((1080) * 6 - 310) + "px)";
+            setInitialLoc(((1080) * 6 - 310))
+        }
+    };*/
     useEffect(()=>{
         makeClone()
         //resize width, initial loc
-        let w = document.getElementsByClassName('banner-image')[0].width;
+       let w = document.getElementsByClassName('banner-image')[0].width;
         if(w!==0) {
             document.querySelector('.Banner-wrapper').style.width = (w + 20) * 3 * 6 + "px"
             document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((w + 20) * 6 - 310) + "px)";

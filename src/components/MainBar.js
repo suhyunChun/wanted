@@ -2,6 +2,7 @@ import React from 'react';
 import {FaSearch} from 'react-icons/fa'
 import {FaRegBell} from 'react-icons/fa'
 import { BsThreeDots } from "react-icons/bs";
+import Banner from "./Banner";
 
 
 function MainBar(props){
