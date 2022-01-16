@@ -73,7 +73,7 @@ body{
   padding-top:25px;
   position: relative;
   width:auto;
-  margin:auto;
+  margin:0 auto;
   overflow:hidden
 }
 .Banner-wrapper{
@@ -129,6 +129,7 @@ body{
   width:100%;
   height:300px;
   object-fit:cover;
+  vertical-align: middle;
 }
 .banner-btn{
   position: relative;
