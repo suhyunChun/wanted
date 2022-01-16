@@ -65,12 +65,12 @@ function Banner(){
         document.querySelector('.Banner-wrapper').style.transitionDuration = "500ms"
         document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+20)* (currIdx-1)) + "px)";
         setCurrIdx(currIdx-1)
-        if(currIdx === -5){
+        if(currIdx === -4){
             setTimeout(()=>{
                 document.querySelector('.Banner-wrapper').style.transition="0ms";
-                document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc) + "px)";
+                document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+1080) + "px)";
                 },500);
-            setCurrIdx(0)
+            setCurrIdx(1)
         }
         if (currIdx-1 < 0){
             setCurrSlide(img[currIdx+5][0])
