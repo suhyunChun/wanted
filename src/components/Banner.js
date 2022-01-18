@@ -12,35 +12,31 @@ function Banner(){
                 ["https://static.wanted.co.kr/images/banners/1488/baa54448.jpg","UX 디자이너의 커리어 설계","브랜드 가치를 더하는 디자인"]])
     let [currSlide, setCurrSlide] = useState("https://static.wanted.co.kr/images/banners/1468/3df61cbc.jpg")
     let [initialLoc, setInitialLoc] = useState(0)
+    let numberOfSlides = 6;
+    let numberOfSlidesOnPage = 3;
+    let paddingV = 20;
     let t = null;
-    /*window.onresize=()=>{
-        console.log("__")
-        let w = document.getElementsByClassName('banner-image')[0].width;
-        if(w!==0) {
-            console.log(w,((w + 20) * 6 - 310))
-            document.querySelector('.Banner-wrapper').style.width = (w + 20) * 3 * 6 + "px"
-            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((w + 20) * 6 - 310) + "px)";
-            setInitialLoc((document.getElementsByClassName('banner-image')[0].width + 20) * 6 - 310)
-        }else{
-            console.log("w=0")
-            document.querySelector('.Banner-wrapper').style.width = (1080) * 3 * 6 + "px"
-            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((1080) * 6 - 310) + "px)";
-            setInitialLoc(((1080) * 6 - 310))
-        }
-    };*/
+    window.addEventListener('resize',function(){
+        /*let currentWidth = document.querySelector('body').offsetWidth;
+        let original_width =  document.querySelector('.content').offsetWidth;
+        let ImageWidth = document.getElementsByClassName('banner-image')[0].width;
+        let totalWidth = ImageWidth/2 + ImageWidth+ 2*paddingV;
+        let eachContentWidth = (totalWidth-(paddingV*2))/3
+        console.log(eachContentWidth)
+        document.querySelector('.content').style.width = original_width-original_width/currentWidth
+        console.log(document.querySelector('.content').offsetWidth)*/
+    })
     useEffect(()=>{
         makeClone()
-        //resize width, initial loc
        let w = document.getElementsByClassName('banner-image')[0].width;
         if(w!==0) {
-            document.querySelector('.Banner-wrapper').style.width = (w + 20) * 3 * 6 + "px"
-            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((w + 20) * 6 - 310) + "px)";
-            setInitialLoc((document.getElementsByClassName('banner-image')[0].width + 20) * 6 - 310)
-        }else{
-            console.log("w == 0")
-            document.querySelector('.Banner-wrapper').style.width = (1080) * 3 * 6 + "px"
-            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((1080) * 6 - 310) + "px)";
-            setInitialLoc(((1080) * 6 - 310))
+            document.querySelector('.Banner-wrapper').style.width = (w + paddingV) * 3 * numberOfSlides + "px"
+            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((w + paddingV) * numberOfSlides - 310) + "px)";
+            setInitialLoc((document.getElementsByClassName('banner-image')[0].width + paddingV) * numberOfSlides - 310)
+        }else{//전체화면이라고 가정.
+            document.querySelector('.Banner-wrapper').style.width = (1060+paddingV) * 3 * numberOfSlides + "px"
+            document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + ((1060+paddingV)  * numberOfSlides - 310) + "px)";
+            setInitialLoc(((1080) * numberOfSlides - 310))
         }
         },[])
 
@@ -57,18 +53,18 @@ function Banner(){
         tmpImg = (img).concat(tmpImg)
         setImg(tmpImg)
         document.querySelector('.Banner-wrapper').style.width = 1080*tmpImg.length+"px"
-        setInitialLoc((document.getElementsByClassName('banner-image')[0].width+20)*6-310)
+        setInitialLoc((document.getElementsByClassName('banner-image')[0].width+paddingV)*numberOfSlides-310)
     }
     const prev=()=>{
         let imgWidth = document.getElementsByClassName('banner-image')[0].width
-        console.log(imgWidth,(initialLoc+(imgWidth+20)* (currIdx-1)))
+        console.log(imgWidth,(initialLoc+(imgWidth+paddingV)* (currIdx-1)))
         document.querySelector('.Banner-wrapper').style.transitionDuration = "500ms"
-        document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+20)* (currIdx-1)) + "px)";
+        document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+paddingV)* (currIdx-1)) + "px)";
         setCurrIdx(currIdx-1)
         if(currIdx === -4){
             setTimeout(()=>{
                 document.querySelector('.Banner-wrapper').style.transition="0ms";
-                document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+1080) + "px)";
+                document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(1060+paddingV) ) + "px)";
                 },500);
             setCurrIdx(1)
         }
@@ -81,7 +77,7 @@ function Banner(){
     const next =()=>{
         let imgWidth = document.getElementsByClassName('banner-image')[0].width
         document.querySelector('.Banner-wrapper').style.transition = 500 + "ms";
-        document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+20)*(currIdx+1)) + "px)";
+        document.querySelector('.Banner-wrapper').style.transform = "translateX(-" + (initialLoc+(imgWidth+paddingV)*(currIdx+1)) + "px)";
         setCurrIdx(currIdx+1)
         if(currIdx===5){
             setTimeout(()=>{
